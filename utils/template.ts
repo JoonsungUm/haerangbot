@@ -2,8 +2,6 @@ import { PostAttributes } from '../db/models/Post'
 import { format } from 'date-fns'
 
 const getDueDate = (startDate, endDate) => {
-  console.log(startDate)
-  console.log(endDate)
   if (startDate === '0000-00-00' || endDate === '0000-00-00') {
     return '미등록'
   } else {

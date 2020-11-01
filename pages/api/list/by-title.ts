@@ -43,7 +43,7 @@ export default async (req, res) => {
           outputs: [
             {
               simpleText: {
-                text: `현재 올라온 ${title} 관련 공고 중 최근 ${posts.count}개를 보여드립니다.`,
+                text: `현재 올라온 ${title} 관련 공고 중 최근 ${posts.count > MAX_LENGTH ? MAX_LENGTH : posts.count}개를 보여드립니다.`,
               },
             },
             {

@@ -36,7 +36,7 @@ export function init(sequelize: Sequelize) {
   Post.init({
     id: { type: DataTypes.INTEGER.UNSIGNED, primaryKey: true, autoIncrement: true },
 
-    number: { type: DataTypes.INTEGER.UNSIGNED, allowNull: false },
+    number: { type: DataTypes.INTEGER.UNSIGNED, unique: true },
 
     startDate: { type: DataTypes.DATEONLY, field: 'start_date'},
 

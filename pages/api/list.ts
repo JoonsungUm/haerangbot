@@ -14,12 +14,12 @@ export default async (req, res) => {
   const sequelize = await initialize((config[env] as any))
 
   const posts: PostAttributes[] = await Post.findAll({
-    order: [['id', 'DESC']],
+    order: [['number', 'DESC']],
     limit: MAX_LENGTH,
     raw: true,
   })
 
-  res.setHeader('Cache-Control', 's-maxage=86400')
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400')
 
   switch (method) {
     case 'GET':

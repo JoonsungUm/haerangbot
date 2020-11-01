@@ -16,7 +16,7 @@ export default async (req, res) => {
 
   const sequelize = await initialize((config[env] as any))
 
-  const posts: PostAttributes[] = await Post.findAll({
+  const posts = await Post.findAndCountAll({
     where: {
       department: {
         [Op.like]: `%${department}%`,
@@ -31,11 +31,11 @@ export default async (req, res) => {
 
   switch (method) {
     case 'GET':
-      res.status(200).json(posts)
+      res.status(200).json(posts.rows)
 
       break
     case 'POST':
-      const cardItems = await getCardItems(posts)
+      const cardItems = await getCardItems(posts.rows)
 
       const responseBody = {
         version: '2.0',
@@ -43,7 +43,7 @@ export default async (req, res) => {
           outputs: [
             {
               simpleText: {
-                text: `현재 올라온 ${department} 관련 공고 중 최근 ${MAX_LENGTH}개를 보여드립니다.`,
+                text: `현재 올라온 ${department} 관련 공고 중 최근 ${posts.count}개를 보여드립니다.`,
               },
             },
             {

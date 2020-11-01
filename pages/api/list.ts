@@ -19,6 +19,8 @@ export default async (req, res) => {
     raw: true,
   })
 
+  res.setHeader('Cache-Control', 's-maxage=86400')
+
   switch (method) {
     case 'GET':
       // Get data from your database

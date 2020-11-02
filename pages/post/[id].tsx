@@ -16,67 +16,58 @@ const Post: FC<PostAttributes> = post => {
   const router = useRouter()
   const { type, title, content, publicationNumber, noticeNumber, createdAt, startDate, endDate, managerName, managerPhone, department } = post
 
-  if (router.isFallback) {
-    return (
-      <div className={styles.container}>
-        <Head>
-          <title>불러오는 중...</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main className={styles.main}>
-          <p className={styles.description}>불러오는 중...</p>
-        </main>
-      </div>
-    )
-  }
   return (
     <div className={styles.container}>
       <Head>
-        <title>{title}</title>
+        <title>{router.isFallback ? '불러오는 중...' : title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h3 className={styles.title}>
-          {title}
-        </h3>
+        {router.isFallback ? (<p className={styles.description}>불러오는 중...</p>) : (
+          <>
+            <h3 className={styles.title}>
+              {title}
+            </h3>
 
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <tbody>
-              <tr>
-                <td style={{ fontWeight: 'bold' }}>고시공고구분</td>
-                <td>{type}</td>
-              </tr>
-              <tr>
-                <td style={{ fontWeight: 'bold' }}>고시공고번호</td>
-                <td>{noticeNumber}</td>
-              </tr>
-              <tr>
-                <td style={{ fontWeight: 'bold' }}>게재제호</td>
-                <td>{publicationNumber}</td>
-              </tr>
-            </tbody>
-          </div>
-          <div className={styles.card}>
-            <tbody>
-              <tr>
-                <td style={{ fontWeight: 'bold' }}>등록일</td>
-                <td>{createdAt}</td>
-              </tr>
-              <tr>
-                <td style={{ fontWeight: 'bold' }}>담당부서</td>
-                <td>{department}</td>
-              </tr>
-              <tr>
-                <td style={{ fontWeight: 'bold' }}>담당자/연락처</td>
-                <td>{managerName} / {managerPhone}</td>
-              </tr>
-            </tbody>
-          </div>
-        </div>
-        <p className={styles.description}>
-          {content}
-        </p>
+            <div className={styles.grid}>
+              <div className={styles.card}>
+                <tbody>
+                  <tr>
+                    <td style={{ fontWeight: 'bold' }}>고시공고구분</td>
+                    <td>{type}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ fontWeight: 'bold' }}>고시공고번호</td>
+                    <td>{noticeNumber}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ fontWeight: 'bold' }}>게재제호</td>
+                    <td>{publicationNumber}</td>
+                  </tr>
+                </tbody>
+              </div>
+              <div className={styles.card}>
+                <tbody>
+                  <tr>
+                    <td style={{ fontWeight: 'bold' }}>등록일</td>
+                    <td>{createdAt}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ fontWeight: 'bold' }}>담당부서</td>
+                    <td>{department}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ fontWeight: 'bold' }}>담당자/연락처</td>
+                    <td>{managerName} / {managerPhone}</td>
+                  </tr>
+                </tbody>
+              </div>
+            </div>
+            <p className={styles.description}>
+              {content}
+            </p>
+          </>
+        )}
       </main>
 
       <footer className={styles.footer}>

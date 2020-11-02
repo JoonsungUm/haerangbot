@@ -1,6 +1,8 @@
 import { PostAttributes } from '../db/models/Post'
 import { format } from 'date-fns'
 
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
+
 const getDueDate = (startDate, endDate) => {
   if (startDate === '0000-00-00' || endDate === '0000-00-00') {
     return '미등록'
@@ -13,7 +15,7 @@ export const getCardItems = async (
   posts: PostAttributes[],
 ) => {
   const result = posts.map(post => {
-    const { title, createdAt, startDate, endDate, department, managerName, managerPhone } = post
+    const { number, title, createdAt, startDate, endDate, department, managerName, managerPhone } = post
 
     return {
       title,
@@ -22,7 +24,7 @@ export const getCardItems = async (
         {
           action: 'webLink',
           label: '자세히 보기',
-          webLinkUrl: `https://google.com`,
+          webLinkUrl: `${BASE_URL}/post/${number}`,
         },
         {
           action: 'share',

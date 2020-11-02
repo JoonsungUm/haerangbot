@@ -1,4 +1,6 @@
-html,
+html {
+  font-size: 14;
+},
 body {
   padding: 0;
   margin: 0;

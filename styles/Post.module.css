@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,12 +79,14 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 1200px;
+  width: 100%;
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
 
 .card {
   margin: 0 .5rem;
+  max-width: 380px;
   flex-basis: 100%;
   padding: 0 .5rem;
   text-align: left;
@@ -98,8 +100,12 @@
   font-size: 1.5rem;
 }
 
+.card tr {
+  line-height: 1.5rem;
+}
+
 .card td {
-  padding: 0 0.2rem;
+  padding: 0 0.5rem;
 }
 
 .card p {
@@ -113,7 +119,6 @@
 
 @media (max-width: 600px) {
   .grid {
-    width: 100%;
     flex-direction: column;
   }
   .card {

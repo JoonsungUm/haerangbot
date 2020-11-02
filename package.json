@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "cross-fetch": "^3.0.6",
     "date-fns": "^2.16.1",
     "mysql2": "^2.2.5",
     "next": "10.0.0",

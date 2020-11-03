@@ -14,6 +14,7 @@ export default async (req, res) => {
 
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400')
 
+  const start = new Date().getTime()
   const posts = await Post.findAndCountAll({
     where: {
       department: {
@@ -24,6 +25,7 @@ export default async (req, res) => {
     limit: MAX_LENGTH,
     raw: true,
   })
+  console.log('mysql', new Date().getTime() - start)
 
   const cardItems = await getCardItems(posts.rows)
 

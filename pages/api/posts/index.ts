@@ -11,11 +11,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const sequelize = await initialize((config[env] as any))
 
+  const start = new Date().getTime()
   const posts = await Post.findAndCountAll({
     order: [['number', 'DESC']],
     limit: MAX_LENGTH,
     raw: true,
   })
+  console.log('mysql', new Date().getTime() - start)
 
   res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400')
 

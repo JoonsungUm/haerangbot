@@ -25,7 +25,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
+    const start = new Date().getTime()
     const apiData = await fetch(`${BASE_URL}${redirectURL}`);
+    console.log(redirectURL, new Date().getTime() - start)
 
     if (apiData.status >= 400) {
       throw new Error("Bad response from server");

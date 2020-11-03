@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   })
   console.log('mysql', new Date().getTime() - start)
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400')
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400, stale-while-revalidate')
 
   const cardItems = await getCardItems(posts.rows)
 

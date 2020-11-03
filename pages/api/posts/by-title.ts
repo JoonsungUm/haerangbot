@@ -12,7 +12,7 @@ export default async (req, res) => {
   const env = process.env.NODE_ENV || 'development'
   const sequelize = await initialize((config[env] as any))
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400')
+  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400, stale-while-revalidate')
 
   const start = new Date().getTime()
   const posts = await Post.findAndCountAll({
